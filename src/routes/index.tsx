@@ -52,16 +52,16 @@ function SectionLabel({ children }: { children: string }) {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-border">
+    <section className="relative overflow-hidden border-b-2 border-border">
       <div className="grid-field pointer-events-none absolute inset-0 opacity-40" />
       <div className="ice-wash pointer-events-none absolute inset-0" />
       <div className="relative mx-auto grid max-w-6xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-2 lg:items-center">
         <div className="min-w-0">
           <SectionLabel>Urban Safety Infrastructure</SectionLabel>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Safe Safar
+          <h1 className="title-depth mt-5 text-5xl font-extrabold tracking-tight text-foreground sm:text-7xl">
+            Safe <span className="text-primary">Safar</span>
           </h1>
-          <p className="mt-4 max-w-xl text-lg font-medium text-foreground/80">
+          <p className="mt-5 max-w-xl text-lg font-semibold text-foreground/85">
             A cost-effective, zero-infrastructure wireless safety network for daily commuters.
           </p>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
@@ -70,14 +70,17 @@ function Hero() {
             app.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
+            <span className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-lift)]">
+              <ShieldCheck className="h-4 w-4 shrink-0" />
+              Create a localized security net
+            </span>
             {[
-              { icon: ShieldCheck, text: "No app required" },
               { icon: Radio, text: "Public grid relay" },
               { icon: BatteryFull, text: "Zero monthly fees" },
             ].map(({ icon: Icon, text }) => (
               <span
                 key={text}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-sm text-foreground/80"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-card px-4 py-1.5 text-sm font-medium text-foreground/85 shadow-[var(--shadow-panel)]"
               >
                 <Icon className="h-4 w-4 shrink-0 text-primary" />
                 {text}
@@ -86,11 +89,11 @@ function Hero() {
           </div>
         </div>
 
-        <div className="panel relative flex aspect-4/3 items-center justify-center rounded-xl">
-          <div className="absolute inset-4 rounded-lg border border-dashed border-primary/30" />
+        <div className="glow-frame relative flex aspect-4/3 items-center justify-center rounded-2xl bg-card">
+          <div className="absolute inset-4 rounded-xl border-2 border-dashed border-navy/40" />
           <div className="relative px-6 text-center">
-            <CircuitBoard className="mx-auto h-10 w-10 text-primary/70" />
-            <p className="mt-4 text-sm font-medium tracking-wide text-foreground">
+            <CircuitBoard className="mx-auto h-12 w-12 text-primary" />
+            <p className="mt-4 text-sm font-semibold tracking-wide text-foreground">
               Safe Safar Hardware Model
             </p>
             <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -104,56 +107,66 @@ function Hero() {
 }
 
 function PhoneMock() {
+  const tiles = [
+    { icon: MapPin, label: "Location", value: "Live", dot: "bg-ok" },
+    { icon: Radio, label: "Keychain", value: "Paired", dot: "bg-cyan" },
+    { icon: Bell, label: "Alerts", value: "Private", dot: "bg-warn" },
+    { icon: Cpu, label: "Failsafe", value: "Armed", dot: "bg-alert" },
+  ];
   return (
-    <div className="mx-auto w-full max-w-[320px]">
-      <div className="panel rounded-[2.2rem] p-3">
-        <div className="rounded-[1.7rem] border border-border bg-secondary/60 p-4">
-          <div className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-foreground/15" />
-          <div className="flex items-center justify-between text-xs text-muted-foreground">
+    <div className="mx-auto w-full max-w-[330px]">
+      <div className="rounded-[2.4rem] border-4 border-navy bg-navy p-2.5 shadow-[var(--shadow-glow)]">
+        <div className="rounded-[1.9rem] bg-gradient-to-b from-navy-2 to-navy p-4 text-navy-foreground">
+          <div className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-navy-foreground/25" />
+          <div className="flex items-center justify-between text-xs text-navy-foreground/70">
             <span>9:41</span>
             <span className="inline-flex items-center gap-1">
-              <Signal className="h-3.5 w-3.5" /> <BatteryFull className="h-3.5 w-3.5" />
+              <Signal className="h-3.5 w-3.5" /> <BatteryFull className="h-3.5 w-3.5 text-ok" />
             </span>
           </div>
+          <p className="mt-4 font-display text-lg font-bold">Command Panel</p>
 
-          <div className="mt-4 rounded-xl border border-primary/25 bg-card p-4">
+          <div className="mt-3 rounded-xl border border-ok/40 bg-ok/10 p-4">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2.5 w-2.5 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok/70" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-ok" />
               </span>
               <p className="truncate text-sm font-semibold">Guardian Daemon Active</p>
             </div>
-            <p className="mt-2 text-xs text-muted-foreground">
+            <p className="mt-2 text-xs text-navy-foreground/70">
               Monitoring local gateways · 3 nodes in range
             </p>
           </div>
 
           <div className="mt-3 grid grid-cols-2 gap-3">
-            {[
-              { icon: MapPin, label: "Location", value: "Live" },
-              { icon: Radio, label: "Keychain", value: "Paired" },
-              { icon: Bell, label: "Alerts", value: "Private" },
-              { icon: Cpu, label: "Failsafe", value: "Armed" },
-            ].map(({ icon: Icon, label, value }) => (
-              <div key={label} className="rounded-lg border border-border bg-card p-3">
-                <Icon className="h-4 w-4 text-primary" />
-                <p className="mt-2 truncate text-[11px] uppercase tracking-wider text-muted-foreground">
+            {tiles.map(({ icon: Icon, label, value, dot }) => (
+              <div key={label} className="rounded-lg border border-navy-foreground/10 bg-navy-foreground/5 p-3">
+                <div className="flex items-center justify-between">
+                  <Icon className="h-4 w-4 text-cyan" />
+                  <span className={`h-2 w-2 rounded-full ${dot}`} />
+                </div>
+                <p className="mt-2 truncate text-[11px] uppercase tracking-wider text-navy-foreground/60">
                   {label}
                 </p>
-                <p className="truncate text-sm font-medium">{value}</p>
+                <p className="truncate text-sm font-semibold">{value}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-3 rounded-xl bg-ink p-4 text-ink-foreground">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-foreground/60">
+          <button
+            type="button"
+            className="mt-3 w-full rounded-xl bg-alert p-4 text-left text-navy-foreground shadow-[0_10px_30px_-10px_var(--alert)]"
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-foreground/80">
               Emergency Probe
             </p>
-            <p className="mt-1 text-sm font-medium">Triple-click keychain to broadcast</p>
-            <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-ink-foreground/15">
-              <div className="h-full w-2/3 rounded-full bg-ice" />
-            </div>
+            <p className="mt-1 text-sm font-bold">Triple-click keychain to broadcast</p>
+          </button>
+          <div className="mt-3 grid grid-cols-3 gap-2 text-center text-[11px] font-semibold">
+            <span className="rounded-md bg-primary py-2">Private</span>
+            <span className="rounded-md bg-navy-foreground/10 py-2">Community</span>
+            <span className="rounded-md bg-navy-foreground/10 py-2">Log</span>
           </div>
         </div>
       </div>
@@ -163,14 +176,14 @@ function PhoneMock() {
 
 function CompanionApp() {
   return (
-    <section className="border-b border-border bg-secondary/40">
+    <section className="border-b-2 border-border bg-secondary/50">
       <div className="mx-auto flex max-w-6xl flex-col gap-12 px-6 py-20 lg:flex-row lg:items-center">
         <div className="w-full lg:w-1/2">
           <PhoneMock />
         </div>
-        <div className="w-full min-w-0 lg:w-1/2">
+        <div className="panel w-full min-w-0 rounded-2xl p-8 lg:w-1/2">
           <SectionLabel>Companion Software</SectionLabel>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight">
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight">
             Mobile Companion App Engine
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground">
@@ -185,73 +198,37 @@ function CompanionApp() {
   );
 }
 
-function CodeWindow({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
+const firmwareCode = "#include <ESP8266WiFi.h>\nextern \"C\" { #include \"user_interface.h\" }\nconst int BUTTON_PIN = 4;\nint clickCount = 0;\nunsigned long lastClickTime = 0;\nuint8_t packetPayload[] = { 'S', 'U', 'R', 'A', '1', '0', '1' }; \n\nvoid setup() {\n  pinMode(BUTTON_PIN, INPUT_PULLUP);\n  WiFi.mode(WIFI_OFF);\n}\nvoid loop() {\n  if (digitalRead(BUTTON_PIN) == LOW) {\n    unsigned long currentTime = millis();\n    if (currentTime - lastClickTime > 200) {\n      clickCount++;\n      lastClickTime = currentTime;\n    }\n    if (clickCount == 3) {\n      sendEmergencyProbe();\n      clickCount = 0;\n      ESP.deepSleep(0);\n    }\n  }\n  if (clickCount > 0 && (millis() - lastClickTime > 2000)) {\n    clickCount = 0;\n  }\n}\nvoid sendEmergencyProbe() {\n  WiFi.mode(WIFI_STA);\n  for (int channel = 1; channel <= 13; channel++) {\n    wifi_set_channel(channel);\n    for (int i = 0; i < 5; i++) {\n      wifi_send_pkt_freedom(packetPayload, sizeof(packetPayload), 0);\n      delay(10);\n    }\n  }\n}";
+
+const failsafeCode = "import { NativeModules } from 'react-native';\nimport Geolocation from 'react-native-geolocation-service';\nimport AsyncStorage from '@react-native-async-storage/async-storage';\n\nconst KEYCHAIN_DEVICE_SIGNATURE = \"SURA101\";\n\nexport async function handleKeychainBroadcastEvent(detectedSignature) {\n  if (detectedSignature !== KEYCHAIN_DEVICE_SIGNATURE) return;\n  \n  Geolocation.getCurrentPosition(\n    async (position) => {\n      const emergencyPacket = {\n        timestamp: new Date().toISOString(),\n        latitude: position.coords.latitude,\n        longitude: position.coords.longitude,\n        status: \"OFFLINE_BLACKBOX_LOGGED\"\n      };\n      await AsyncStorage.setItem('@SafeSafar_LastActiveLocation', JSON.stringify(emergencyPacket));\n      triggerBackgroundDataNetworkSync(emergencyPacket);\n    },\n    (error) => { console.error(error.message); },\n    { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }\n  );\n}";
+
+function CodeWindow({ label, code }: { label: string; code: string }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-border shadow-[var(--shadow-panel)]">
+    <div className="min-w-0 overflow-hidden rounded-2xl border-2 border-navy shadow-[var(--shadow-lift)]">
       <div className="flex items-center gap-3 border-b border-ink-foreground/10 bg-ink px-4 py-3">
         <span className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-ink-foreground/25" />
-          <span className="h-2.5 w-2.5 rounded-full bg-ink-foreground/25" />
-          <span className="h-2.5 w-2.5 rounded-full bg-ice/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-alert" />
+          <span className="h-2.5 w-2.5 rounded-full bg-warn" />
+          <span className="h-2.5 w-2.5 rounded-full bg-ok" />
         </span>
         <p className="truncate text-xs font-medium tracking-wide text-ink-foreground/80">{label}</p>
       </div>
-      <pre className="overflow-x-auto bg-code-bg px-5 py-5 font-mono text-[13px] leading-relaxed text-ink-foreground/90">
-        <code>{children}</code>
+      <pre className="max-h-[480px] overflow-auto bg-code-bg px-5 py-5 font-mono text-[12.5px] leading-relaxed text-ink-foreground/90">
+        <code>{code}</code>
       </pre>
     </div>
   );
 }
 
-const K = ({ children }: { children: string }) => (
-  <span className="text-syntax-key">{children}</span>
-);
-const F = ({ children }: { children: string }) => <span className="text-syntax-fn">{children}</span>;
-const S = ({ children }: { children: string }) => (
-  <span className="text-syntax-str">{children}</span>
-);
-const N = ({ children }: { children: string }) => (
-  <span className="text-syntax-num">{children}</span>
-);
-
 function CodeSection() {
   return (
-    <section className="border-b border-border">
+    <section className="border-b-2 border-border">
       <div className="mx-auto max-w-6xl px-6 py-20">
         <SectionLabel>Core Embedded Stack</SectionLabel>
-        <h2 className="mt-4 text-3xl font-semibold tracking-tight">Developer Code Windows</h2>
+        <h2 className="mt-4 font-display text-3xl font-bold tracking-tight">Developer Code Windows</h2>
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <CodeWindow label="Keychain Embedded Firmware (C++)">
-            {<>
-              <K>void</K> <F>loop</F>{"() {\n"}
-              {"  "}<K>if</K> {"("}<F>digitalRead</F>{"(BUTTON_PIN) == LOW) {\n"}
-              {"    clickCount++;\n"}
-              {"    "}<F>delay</F>{"("}<N>200</N>{");\n"}
-              {"    "}<K>if</K> {"(clickCount == "}<N>3</N>{") {\n"}
-              {"      "}<F>sendEmergencyProbe</F>{"();\n"}
-              {"      clickCount = "}<N>0</N>{";\n"}
-              {"      ESP."}<F>deepSleep</F>{"("}<N>0</N>{");\n"}
-              {"    }\n  }\n}"}
-            </>}
-          </CodeWindow>
-          <CodeWindow label="Mobile App Offline Failsafe (JavaScript)">
-            {<>
-              <K>async function</K> <F>handleKeychainBroadcast</F>{"(sig) {\n"}
-              {"  "}<K>if</K> {"(sig !== SIGNATURE) "}<K>return</K>{";\n"}
-              {"  Geolocation."}<F>getCurrentPosition</F>{"(\n"}
-              {"    "}<K>async</K>{" (pos) => {\n"}
-              {"      "}<K>const</K>{" pkt = { time: "}<K>new</K>{" "}<F>Date</F>{"(), lat: pos.coords.latitude,\n"}
-              {"        lng: pos.coords.longitude };\n"}
-              {"      "}<K>await</K>{" AsyncStorage."}<F>setItem</F>{"("}<S>{"'@OfflineLog'"}</S>{", JSON."}<F>stringify</F>{"(pkt));\n"}
-              {"    }\n  );\n}"}
-            </>}
-          </CodeWindow>
+          <CodeWindow label="Keychain Embedded Firmware (C++)" code={firmwareCode} />
+          <CodeWindow label="Mobile App Offline Failsafe (JavaScript)" code={failsafeCode} />
         </div>
       </div>
     </section>
@@ -278,12 +255,12 @@ const specs = [
 
 function Hardware() {
   return (
-    <section className="border-b border-border bg-secondary/40">
+    <section className="border-b-2 border-border bg-secondary/40">
       <div className="mx-auto max-w-6xl px-6 py-20">
         <SectionLabel>Hardware & Logistics</SectionLabel>
-        <h2 className="mt-4 text-3xl font-semibold tracking-tight">Retail & Economic Impact</h2>
+        <h2 className="mt-4 text-3xl font-display font-bold tracking-tight">Retail & Economic Impact</h2>
 
-        <div className="panel mt-8 rounded-xl p-8">
+        <div className="panel mt-8 rounded-2xl border-l-8 border-l-primary p-8">
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Consumer Price
           </p>
@@ -296,7 +273,7 @@ function Hardware() {
 
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           {specs.map(({ icon: Icon, heading, text }) => (
-            <div key={heading} className="panel rounded-xl p-6">
+            <div key={heading} className="panel rounded-2xl p-6">
               <Icon className="h-5 w-5 text-primary" />
               <h3 className="mt-4 text-base font-semibold">{heading}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
@@ -317,15 +294,15 @@ const costs = [
 
 function Costs() {
   return (
-    <section className="border-b border-border">
+    <section className="border-b-2 border-border">
       <div className="mx-auto max-w-6xl px-6 py-20">
         <SectionLabel>Manufacturing</SectionLabel>
-        <h2 className="mt-4 text-3xl font-semibold tracking-tight">
+        <h2 className="mt-4 text-3xl font-display font-bold tracking-tight">
           Industrial Cost Architecture & Breakdown
         </h2>
         <p className="mt-4 text-lg font-medium">Total Production Cost: ~250 PKR per unit</p>
 
-        <div className="mt-8 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
+        <div className="mt-8 divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-card shadow-[var(--shadow-panel)]">
           {costs.map(({ label, value }) => (
             <div
               key={label}
@@ -373,10 +350,10 @@ function Faq() {
     <section>
       <div className="mx-auto max-w-4xl px-6 py-20">
         <SectionLabel>Support</SectionLabel>
-        <h2 className="mt-4 text-3xl font-semibold tracking-tight">Frequently Asked Questions</h2>
-        <Accordion type="single" collapsible className="mt-8 w-full">
+        <h2 className="mt-4 text-3xl font-display font-bold tracking-tight">Frequently Asked Questions</h2>
+        <Accordion type="single" collapsible className="panel mt-8 w-full rounded-2xl px-6">
           {faqs.map(({ q, a }, i) => (
-            <AccordionItem key={q} value={`item-${i}`}>
+            <AccordionItem key={q} value={`item-${i}`} className="last:border-b-0">
               <AccordionTrigger className="text-left text-base font-medium">{q}</AccordionTrigger>
               <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
                 {a}
