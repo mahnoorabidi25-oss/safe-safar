@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import heroVideo from "@/assets/hero.mp4.asset.json";
+import bgImage from "@/assets/bg.png.asset.json";
 import {
   Accordion,
   AccordionContent,
@@ -50,56 +52,90 @@ function SectionLabel({ children }: { children: string }) {
   );
 }
 
+const navLinks = [
+  { href: "#mechanism", label: "Working Mechanism" },
+  { href: "#app", label: "App Engine" },
+  { href: "#code", label: "Source Code" },
+  { href: "#specs", label: "Specs & Costs" },
+  { href: "#faq", label: "FAQs" },
+];
+
+function NavBar() {
+  return (
+    <header className="sticky top-0 z-50 border-b-2 border-border bg-background/90 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
+        <a href="#top" className="shrink-0 font-display text-lg font-extrabold tracking-tight">
+          Safe <span className="text-primary">Safar</span>
+        </a>
+        <nav className="flex min-w-0 gap-5 overflow-x-auto text-sm font-semibold text-foreground/80">
+          {navLinks.map((l) => (
+            <a key={l.href} href={l.href} className="shrink-0 whitespace-nowrap transition-colors hover:text-primary">
+              {l.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+}
+
 function Hero() {
   return (
-    <section className="relative overflow-hidden border-b-2 border-border">
-      <div className="grid-field pointer-events-none absolute inset-0 opacity-40" />
-      <div className="ice-wash pointer-events-none absolute inset-0" />
+    <section id="top" className="relative overflow-hidden border-b-2 border-border">
+      <div
+        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-60"
+        style={{ backgroundImage: `url(${bgImage.url})` }}
+      />
       <div className="relative mx-auto grid max-w-6xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-2 lg:items-center">
         <div className="min-w-0">
           <SectionLabel>Urban Safety Infrastructure</SectionLabel>
-          <h1 className="title-depth mt-5 text-5xl font-extrabold tracking-tight text-foreground sm:text-7xl">
+          <h1 className="title-depth mt-5 font-display text-5xl font-extrabold tracking-tight text-foreground sm:text-7xl">
             Safe <span className="text-primary">Safar</span>
           </h1>
-          <p className="mt-5 max-w-xl text-lg font-semibold text-foreground/85">
-            A cost-effective, zero-infrastructure wireless safety network for daily commuters.
-          </p>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Safe Safar is a low-cost safety keychain that sends emergency alerts via local public
-            internet grids. It works instantly without you ever having to grab your phone or open an
-            app.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6">
             <span className="inline-flex items-center gap-2 rounded-full border-2 border-primary bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-lift)]">
               <ShieldCheck className="h-4 w-4 shrink-0" />
               Create a localized security net
             </span>
-            {[
-              { icon: Radio, text: "Public grid relay" },
-              { icon: BatteryFull, text: "Zero monthly fees" },
-            ].map(({ icon: Icon, text }) => (
-              <span
-                key={text}
-                className="inline-flex items-center gap-2 rounded-full border-2 border-border bg-card px-4 py-1.5 text-sm font-medium text-foreground/85 shadow-[var(--shadow-panel)]"
-              >
-                <Icon className="h-4 w-4 shrink-0 text-primary" />
-                {text}
-              </span>
-            ))}
           </div>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+            Safe Safar is a low-cost safety keychain that sends emergency alerts via local public
+            internet grids. It works instantly without you ever having to grab your phone or open an
+            app.
+          </p>
         </div>
+        <video
+          src={heroVideo.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full rounded-2xl border-0 bg-transparent object-cover outline-none"
+        />
+      </div>
+    </section>
+  );
+}
 
-        <div className="glow-frame relative flex aspect-4/3 items-center justify-center rounded-2xl bg-card">
-          <div className="absolute inset-4 rounded-xl border-2 border-dashed border-navy/40" />
-          <div className="relative px-6 text-center">
-            <CircuitBoard className="mx-auto h-12 w-12 text-primary" />
-            <p className="mt-4 text-sm font-semibold tracking-wide text-foreground">
-              Safe Safar Hardware Model
-            </p>
-            <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Drop Image Here
-            </p>
-          </div>
+const mechanism = [
+  "Our project, Safe Safar, turns the existing internet infrastructure of Pakistan into an invisible safety net.",
+  "When a student clicks this button 3 times, it screams an open radio distress cry into the air. It does not need to know any private Wi-Fi passwords.",
+  "We partner directly with big internet companies like StormFiber and PTCL. A simple update on their central network tells nearby street routers to catch that distress cry and instantly fire a live tracking map straight to the parents' phones. Zero hardware costs for us, and 100% safety for the city.",
+];
+
+function Mechanism() {
+  return (
+    <section id="mechanism" className="border-b-2 border-border">
+      <div className="mx-auto max-w-6xl px-6 py-20">
+        <SectionLabel>30-Second Summary</SectionLabel>
+        <h2 className="mt-4 font-display text-3xl font-bold tracking-tight">The Working Mechanism</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {mechanism.map((t, i) => (
+            <div key={i} className={`panel rounded-2xl p-6 ${i === 1 ? "border-primary" : ""}`}>
+              <span className="font-mono text-sm font-semibold text-primary">0{i + 1}</span>
+              <p className="mt-3 text-base leading-relaxed text-foreground/85">{t}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -156,7 +192,7 @@ function PhoneMock() {
 
           <button
             type="button"
-            className="mt-3 w-full rounded-xl bg-alert p-4 text-left text-navy-foreground shadow-[0_10px_30px_-10px_var(--alert)]"
+            className="mt-3 w-full animate-pulse rounded-xl bg-alert p-4 text-left text-navy-foreground shadow-[0_10px_30px_-10px_var(--alert)]"
           >
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-navy-foreground/80">
               Emergency Probe
@@ -176,7 +212,7 @@ function PhoneMock() {
 
 function CompanionApp() {
   return (
-    <section className="border-b-2 border-border bg-secondary/50">
+    <section id="app" className="border-b-2 border-border bg-secondary/50">
       <div className="mx-auto flex max-w-6xl flex-col gap-12 px-6 py-20 lg:flex-row lg:items-center">
         <div className="w-full lg:w-1/2">
           <PhoneMock />
@@ -187,10 +223,8 @@ function CompanionApp() {
             Mobile Companion App Engine
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            This smartphone application runs silently as a lightweight background daemon. In active
-            network zones, it monitors local connectivity triggers. If the user enters an unrouted
-            sector with zero data, it dynamically handles offline failsafe procedures to keep the
-            user secure.
+            This application runs silently as an ultra-lightweight background listener to securely
+            capture local hardware distress tokens and route critical telemetry.
           </p>
         </div>
       </div>
@@ -220,15 +254,37 @@ function CodeWindow({ label, code }: { label: string; code: string }) {
   );
 }
 
+const codeBlocks = [
+  {
+    title: "Keychain Software Code",
+    desc: "Framework Language: C++ / Arduino IDE. This embedded firmware script handles hardware click inputs, wakes the Wi-Fi chip from low-power standby, and injects raw unauthenticated 802.11 management probe request frames into local open airwaves.",
+    label: "keychain_firmware.ino",
+    code: firmwareCode,
+  },
+  {
+    title: "Mobile App Code",
+    desc: "Framework Language: JavaScript / React Native. This background service acts as an offline black box loop. If local network infrastructure is missing, it commands the phone's satellite GPS chip to cache the current latitude and longitude coordinates safely inside the device's internal storage disk.",
+    label: "offlineFailsafe.js",
+    code: failsafeCode,
+  },
+];
+
 function CodeSection() {
   return (
-    <section className="border-b-2 border-border">
+    <section id="code" className="border-b-2 border-border">
       <div className="mx-auto max-w-6xl px-6 py-20">
         <SectionLabel>Core Embedded Stack</SectionLabel>
-        <h2 className="mt-4 font-display text-3xl font-bold tracking-tight">Developer Code Windows</h2>
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <CodeWindow label="Keychain Embedded Firmware (C++)" code={firmwareCode} />
-          <CodeWindow label="Mobile App Offline Failsafe (JavaScript)" code={failsafeCode} />
+        <h2 className="mt-4 font-display text-3xl font-bold tracking-tight">Technical Source Code Architecture</h2>
+        <div className="mt-10 grid gap-8 lg:grid-cols-2">
+          {codeBlocks.map((c) => (
+            <div key={c.title} className="flex min-w-0 flex-col">
+              <h3 className="font-display text-xl font-bold">{c.title}</h3>
+              <p className="mb-5 mt-2 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
+              <div className="mt-auto">
+                <CodeWindow label={c.label} code={c.code} />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -253,71 +309,56 @@ const specs = [
   },
 ];
 
-function Hardware() {
-  return (
-    <section className="border-b-2 border-border bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-6 py-20">
-        <SectionLabel>Hardware & Logistics</SectionLabel>
-        <h2 className="mt-4 text-3xl font-display font-bold tracking-tight">Retail & Economic Impact</h2>
-
-        <div className="panel mt-8 rounded-2xl border-l-8 border-l-primary p-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Consumer Price
-          </p>
-          <p className="mt-2 text-3xl font-semibold tracking-tight text-primary">450 – 500 PKR</p>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Engineered specifically for mass accessibility across Pakistan. An ultra-affordable
-            one-time purchase model with zero recurring monthly data fees or telecom packages.
-          </p>
-        </div>
-
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
-          {specs.map(({ icon: Icon, heading, text }) => (
-            <div key={heading} className="panel rounded-2xl p-6">
-              <Icon className="h-5 w-5 text-primary" />
-              <h3 className="mt-4 text-base font-semibold">{heading}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 const costs = [
-  { label: "Radio Transmitter Component Module & Microchip Array", value: 120 },
-  { label: "Ultra-flat CR2032 Lith-Watch Power Cell Battery", value: 30 },
-  { label: "Injection-Molded Polycarbonate & ABS Casing Elements", value: 50 },
-  { label: "Tactile Springs, Switches, Lanyard Clips, and Packaging", value: 50 },
+  { label: "Chipset Module", value: 120 },
+  { label: "Power Cell", value: 30 },
+  { label: "Polymer Casing", value: 50 },
+  { label: "Structural Elements", value: 50 },
 ];
 
-function Costs() {
+function SpecsCosts() {
   return (
-    <section className="border-b-2 border-border">
+    <section id="specs" className="border-b-2 border-border bg-secondary/40">
       <div className="mx-auto max-w-6xl px-6 py-20">
-        <SectionLabel>Manufacturing</SectionLabel>
-        <h2 className="mt-4 text-3xl font-display font-bold tracking-tight">
-          Industrial Cost Architecture & Breakdown
+        <SectionLabel>Logistics & Economics</SectionLabel>
+        <h2 className="mt-4 font-display text-3xl font-bold tracking-tight">
+          Industrial Cost Architecture & Physical Specs
         </h2>
-        <p className="mt-4 text-lg font-medium">Total Production Cost: ~250 PKR per unit</p>
-
-        <div className="mt-8 divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-card shadow-[var(--shadow-panel)]">
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <div className="panel rounded-2xl border-l-8 border-l-primary p-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Retail Market Price</p>
+            <p className="mt-2 text-3xl font-semibold tracking-tight text-primary">450 – 500 PKR</p>
+            <p className="mt-3 text-sm text-muted-foreground">Highly economical for local Pakistani students.</p>
+          </div>
+          <div className="panel rounded-2xl border-l-8 border-l-navy p-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Factory Production Cost</p>
+            <p className="mt-2 text-3xl font-semibold tracking-tight">~250 PKR</p>
+            <p className="mt-3 text-sm text-muted-foreground">Per unit, at manufacturing scale.</p>
+          </div>
+        </div>
+        <div className="mt-6 divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-card shadow-[var(--shadow-panel)]">
           {costs.map(({ label, value }) => (
-            <div
-              key={label}
-              className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 py-5 transition-colors hover:bg-accent/40"
-            >
+            <div key={label} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 py-5">
               <div className="min-w-0">
                 <p className="text-sm font-medium">{label}</p>
                 <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-secondary">
-                  <div
-                    className="h-full rounded-full bg-primary/70"
-                    style={{ width: `${(value / 250) * 100}%` }}
-                  />
+                  <div className="h-full rounded-full bg-primary/70" style={{ width: `${(value / 250) * 100}%` }} />
                 </div>
               </div>
               <p className="shrink-0 font-mono text-sm font-medium text-primary">{value} PKR</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {[
+            { icon: Ruler, h: "Size", t: "2.0 x 1.0 x 0.4 inches flat profile." },
+            { icon: Weight, h: "Weight", t: "15 grams total mass." },
+            { icon: Boxes, h: "Materials", t: "Polycarbonate shell, ABS structural plastic core, and textured rubber toggles." },
+          ].map(({ icon: Icon, h, t }) => (
+            <div key={h} className="panel rounded-2xl p-6">
+              <Icon className="h-5 w-5 text-primary" />
+              <h3 className="mt-4 text-base font-semibold">{h}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t}</p>
             </div>
           ))}
         </div>
@@ -347,7 +388,7 @@ const faqs = [
 
 function Faq() {
   return (
-    <section>
+    <section id="faq">
       <div className="mx-auto max-w-4xl px-6 py-20">
         <SectionLabel>Support</SectionLabel>
         <h2 className="mt-4 text-3xl font-display font-bold tracking-tight">Frequently Asked Questions</h2>
@@ -369,11 +410,12 @@ function Faq() {
 function Index() {
   return (
     <main className="min-h-screen bg-background">
+      <NavBar />
       <Hero />
+      <Mechanism />
       <CompanionApp />
       <CodeSection />
-      <Hardware />
-      <Costs />
+      <SpecsCosts />
       <Faq />
       <footer className="border-t border-border py-10">
         <p className="mx-auto max-w-6xl px-6 text-sm text-muted-foreground">

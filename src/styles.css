@@ -193,3 +193,8 @@
     border-color: var(--primary);
   }
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
