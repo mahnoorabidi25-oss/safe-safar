@@ -10,7 +10,6 @@ import {
 import {
   BatteryFull,
   Bell,
-  CircuitBoard,
   Cpu,
   MapPin,
   Radio,
