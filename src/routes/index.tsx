@@ -61,7 +61,7 @@ const navLinks = [
 
 function NavBar() {
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-border bg-background/90 backdrop-blur">
+    <header className="glass-nav sticky top-0 z-50 border-b border-border">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
         <a href="#top" className="shrink-0 font-display text-lg font-extrabold tracking-tight">
           Safe <span className="text-primary">Safar</span>
@@ -82,7 +82,7 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden border-b-2 border-border">
       <div
-        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-60"
+        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-15 mix-blend-screen"
         style={{ backgroundImage: `url(${bgImage.url})` }}
       />
       <div className="relative mx-auto grid max-w-6xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-2 lg:items-center">
@@ -408,7 +408,7 @@ function Faq() {
 
 function Index() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-transparent">
       <NavBar />
       <Hero />
       <Mechanism />

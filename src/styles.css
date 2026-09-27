@@ -69,28 +69,28 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.19 0.02 250);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.19 0.02 250);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.19 0.02 250);
-  --primary: oklch(0.51 0.23 277);
-  --primary-foreground: oklch(0.99 0.005 240);
-  --secondary: oklch(0.96 0.008 240);
-  --secondary-foreground: oklch(0.24 0.02 250);
-  --muted: oklch(0.965 0.006 240);
-  --muted-foreground: oklch(0.52 0.02 250);
-  --accent: oklch(0.95 0.03 277);
-  --accent-foreground: oklch(0.35 0.15 277);
+  --background: #1a0066;
+  --foreground: #ffffff;
+  --card: rgb(17 13 72 / 60%);
+  --card-foreground: #ffffff;
+  --popover: #1a145b;
+  --popover-foreground: #ffffff;
+  --primary: #a8baff;
+  --primary-foreground: #130a48;
+  --secondary: rgb(255 255 255 / 10%);
+  --secondary-foreground: #ffffff;
+  --muted: rgb(255 255 255 / 8%);
+  --muted-foreground: #d1d5db;
+  --accent: rgb(168 186 255 / 17%);
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.99 0.003 240);
-  --border: oklch(0.86 0.015 270);
-  --input: oklch(0.91 0.008 245);
-  --ring: oklch(0.58 0.2 277);
+  --border: rgb(209 213 219 / 27%);
+  --input: rgb(209 213 219 / 35%);
+  --ring: #a8baff;
 
-  --ice: oklch(0.68 0.17 277);
-  --ice-soft: oklch(0.95 0.035 277);
+  --ice: #a8baff;
+  --ice-soft: rgb(168 186 255 / 12%);
   --ink: oklch(0.21 0.025 254);
   --ink-foreground: oklch(0.97 0.006 240);
 
@@ -101,10 +101,12 @@
   --syntax-num: oklch(0.82 0.1 320);
   --syntax-com: oklch(0.6 0.02 250);
 
+  --gradient-page: linear-gradient(135deg, #3b0066 0%, #1a0066 50%, #002266 100%);
+  --gradient-nav: linear-gradient(135deg, rgb(59 0 102 / 78%) 0%, rgb(26 0 102 / 78%) 50%, rgb(0 34 102 / 78%) 100%);
   --gradient-ice: linear-gradient(135deg, var(--ice-soft), transparent 70%);
-  --shadow-panel: 0 2px 0 oklch(0.2 0.03 270 / 8%), 0 20px 44px -18px oklch(0.25 0.12 277 / 35%);
-  --shadow-title: 0 4px 14px oklch(0.51 0.23 277 / 28%);
-  --shadow-glow: 0 0 0 4px oklch(0.51 0.23 277 / 15%), 0 24px 60px -20px oklch(0.51 0.23 277 / 55%);
+  --shadow-panel: 0 2px 0 rgb(0 0 0 / 12%), 0 20px 44px -18px rgb(0 0 25 / 50%);
+  --shadow-title: 0 4px 18px rgb(0 0 25 / 48%);
+  --shadow-glow: 0 0 0 4px rgb(168 186 255 / 14%), 0 24px 60px -20px rgb(0 0 25 / 65%);
   --navy: oklch(0.2 0.06 265);
   --navy-2: oklch(0.27 0.08 265);
   --navy-foreground: oklch(0.96 0.02 265);
@@ -112,7 +114,7 @@
   --ok: oklch(0.72 0.18 155);
   --warn: oklch(0.8 0.16 80);
   --cyan: oklch(0.8 0.13 210);
-  --shadow-lift: 0 2px 0 oklch(0.2 0.03 270 / 8%), 0 32px 64px -20px oklch(0.45 0.2 277 / 45%);
+  --shadow-lift: 0 2px 0 rgb(0 0 0 / 12%), 0 32px 64px -20px rgb(0 0 25 / 65%);
 
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -136,10 +138,17 @@
 
   body {
     background-color: var(--color-background);
+    background-image: var(--gradient-page);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
+}
+
+@utility glass-nav {
+  background: var(--gradient-nav);
+  backdrop-filter: blur(10px);
 }
 
 @utility panel {
